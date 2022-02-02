@@ -34,18 +34,12 @@ io.on('connection' , (socket) => {
 
 
 
-
-
-
-
-
-
 app.get("/", (req, res) => {
   res.send("server is ranging");
 });
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () =>  {
     console.log(`Server running on port ${PORT} http://localhost:${PORT}`);
     });
