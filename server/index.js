@@ -15,6 +15,7 @@ const io = require("socket.io")(server, {
 
 io.on('connection' , (socket) => {
   socket.emit("me" , socket.id);
+  console.log("me emit" ,socket.id);
 
   socket.on("disconnect" , () => {
     console.log("user disconnected");
@@ -22,10 +23,14 @@ io.on('connection' , (socket) => {
   })
 
   socket.on("callUser" , ({userToCall , signalData , from , name}) => {
+    console.log("callUser" , userToCall , signalData , from , name);
+
     io.to(userToCall).emit("caller" , {signalData , from , name});
   })
   
   socket.on('answerCall', (data)=> {
+    console.log("answerCall" , data);
+
     io.to(data.to).emit('callAccepted', data.signal);
   })
 })
